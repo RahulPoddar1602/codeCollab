@@ -36,7 +36,7 @@ const socket = io();
     // Set a new timeout after 1 second (1000 milliseconds)
     timeoutId = setTimeout(function() {
         run();
-    }, 1000);
+    }, 100);
     }
     // Add an event listener to detect keypress events
     document.addEventListener("keypress", function() {

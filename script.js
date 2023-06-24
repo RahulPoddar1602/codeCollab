@@ -28,6 +28,20 @@ const socket = io();
         output.contentDocument.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
         output.contentWindow.eval(jsCode);
     }
+    let timeoutId;
+
+    function startIdleTimer() {
+    // Clear any existing timeout
+    clearTimeout(timeoutId);
+    // Set a new timeout after 1 second (1000 milliseconds)
+    timeoutId = setTimeout(function() {
+        run();
+    }, 1000);
+    }
+    // Add an event listener to detect keypress events
+    document.addEventListener("keypress", function() {
+    startIdleTimer();
+    });
     socket.on("coding", (e) => {
         htmlCode = e.html;
         cssCode = e.css;
